@@ -34,7 +34,7 @@ pipeline {
                stage('Docker : run the docker file on  http://192.168.220.137:8086/index/ ') {
           
             steps {
-                sh "docker run my-maven-docker-project "
+                sh "docker run edb3798eccc8 "
                  
             }
            } 
