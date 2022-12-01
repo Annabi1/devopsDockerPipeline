@@ -28,10 +28,10 @@ pipeline {
           
             steps {
             
-              sh
-                          " docker build -t ba2aec10e58f/my-maven-docker-project .
+          
+                              sh " docker build -t ba2aec10e58f/my-maven-docker-project ."
 
-                              docker push ba2aec10e58f/my-maven-docker-project:latest"
+                                 sh " docker push ba2aec10e58f/my-maven-docker-project:latest"
                               
                   
                     
