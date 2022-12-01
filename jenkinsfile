@@ -1,0 +1,47 @@
+pipeline {
+    agent any
+
+
+    stages {
+           stage('Notification') {
+            steps {
+                        mail bcc: 'hehe', body: 'Validatio <project started a build you may check it ', cc: 'hehe', from: '', replyTo: '', subject: 'build is triggred', to: 'annabi.mabrouka99@gmail.com'
+
+            }
+        }
+        
+    
+        
+          
+        
+  stage('Build') {
+ steps {
+                sh "mvn clean compile"
+                sh "mvn install -Dmaven.test.skip=true -P prod"
+                }
+            }
+          
+   stage('deploy') {
+             steps {
+                 
+                 deploy adapters: [tomcat7(credentialsId: 'tomcatpipeline', path: '', url: 'http://192.168.220.137:8081')], contextPath: 'index', war: '**/*war'
+  }
+  
+    }
+    stage('Docker: build') {
+          
+            steps {
+                sh "docker build -t ba2aec10e58f/app ."
+                 
+            }
+           } 
+               stage('Docker : run the docker file on  http://192.168.220.137:8086/index/ ') {
+          
+            steps {
+                sh "docker run ac627d92b0fb "
+                 
+            }
+           } 
+
+    }
+}
