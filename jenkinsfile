@@ -16,8 +16,8 @@ pipeline {
         
   stage('Build') {
  steps {
-                sh "mvn clean compile"
-                sh "mvn install -Dmaven.test.skip=true -P prod"
+                sh "mvn clean compile install "
+                
                 }
             }
           
@@ -31,14 +31,14 @@ pipeline {
     stage('Docker: build') {
           
             steps {
-                sh "docker build -t ba2aec10e58f/app ."
+                sh "docker build -t ba2aec10e58f/my-maven-docker-project ."
                  
             }
            } 
                stage('Docker : run the docker file on  http://192.168.220.137:8086/index/ ') {
           
             steps {
-                sh "docker run ac627d92b0fb "
+                sh "docker run my-maven-docker-project "
                  
             }
            } 
