@@ -31,7 +31,6 @@ pipeline {
           
                               sh " docker build -t ba2aec10e58f/my-maven-docker-project ."
 
-                                 sh " docker push ba2aec10e58f/my-maven-docker-project:latest"
                               
                   
                     
