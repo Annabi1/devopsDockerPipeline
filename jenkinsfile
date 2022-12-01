@@ -21,11 +21,11 @@ pipeline {
                 }
             }
           
-     stage("ARCHIVE"){
+     stage("Deploy"){
             steps{
-                sh "mvn package "
-                archiveArtifacts artifacts: '**/*.war', followSymlinks: false
-          }}
+deploy adapters: [tomcat7(credentialsId: 'tomcatpipeline', path: '', url: 'http://192.168.220.137:8081/i')], contextPath: 'devops', war: '**/*.war'    
+
+}}
   
     
     stage('Docker: build') {
